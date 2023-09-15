@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>Editar Viaje</title>
+</head>
+<body>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 mb-3 border-bottom">Editar viaje</h1>
+    <form method="post" th:action="@{/viajes/save}" th:object="${viaje}" class="mt-2">
+      <input th:field="*{idViajes}" name="idViajes" type="hidden"/>
+      <div class="mb-3">
+        <label class="form-label">Punto de recojo</label>
+        <input th:field="*{punto_recojo}" type="text" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Cantidad de personas</label>
+        <input th:field="*{cant_personas}" type="text" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Cantidad de perros</label>
+        <input th:field="*{cant_perros}" type="text" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Persona</label>
+        <select class="form-select" name="persona_idPersona" id="persona_idPersona">
+          <option th:each="personas: ${listaPersonas}"
+                  th:text="${personas.nombre}" th:value="${personas.idPersona}"
+                  th:selected="${viaje.persona_idPersona.idPersona == personas.idPersona}">Open this select menu</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Lugares</label>
+        <select class="form-select" name="idLugares" id="idLugares">
+          <option th:each="lugares: ${listaLugares}"
+                  th:text="${lugares.nombre_lugar}" th:value="${lugares.idLugares}"
+                  th:selected="${viaje.lugares_idLugares.idLugares == lugares.idLugares}">Open this select menu</option>
+        </select>
+      </div>
+      <a th:href="@{/viajes}" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

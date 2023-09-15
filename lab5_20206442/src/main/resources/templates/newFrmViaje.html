@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>Nuevo Viaje</title>
+</head>
+<body>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 mb-3 border-bottom">Nuevo Viaje</h1>
+    <form method="post" th:action="@{/viaje/save}" class="mt-2">
+      <div class="mb-3">
+        <label for="idViajes" class="form-label">Id viajes</label>
+        <input type="number" class="form-control" name="idViajes" id="idViajes">
+      </div>
+      <div class="mb-3">
+        <label for="punto_recojo" class="form-label">Punto de recojo</label>
+        <input type="text" class="form-control" name="punto_recojo" id="punto_recojo">
+      </div>
+      <div class="mb-3">
+        <label for="cant_personas" class="form-label">Cantidad de personas</label>
+        <input type="number" class="form-control" name="cant_personas" id="cant_personas">
+      </div>
+      <div class="mb-3">
+        <label for="cant_perros" class="form-label">Cantidad de perror</label>
+        <input type="number" class="form-control" name="cant_perros" id="cant_perros">
+      </div>
+      <div class="mb-3">
+        <label for="supplier" class="form-label">Proveedor</label>
+        <select class="form-select" name="supplier" id="supplier">
+          <option th:each="persona: ${listaPersonas}"
+                  th:text="${persona.nombre}" th:value="${persona.idPersona}">Open this select menu</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Categoría</label>
+        <select class="form-select" name="category" id="category">
+          <option th:each="lugar: ${listaLugares}"
+                  th:text="${lugar.nombre_lugar}" th:value="${lugar.idLugares}">Open this select menu</option>
+        </select>
+      </div>
+      <a th:href="@{/viajes}" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

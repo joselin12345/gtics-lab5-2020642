@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>Lista mascotas</title>
+</head>
+<body>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 border-bottom" style="text-align:center">Lista mascotas</h1>
+
+    <div class="d-flex mt-3 mb-4">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nombre mascota</th>
+          <th>Genero</th>
+          <th>Edad</th>
+          <th>Fecha Nacimiento</th>
+          <th>Vacunado</th>
+          <th>Desparatisado</th>
+          <th>Dueño</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mascotas : ${listaMascotas}">
+          <td th:text="${mascotas.nombre_mascota}"></td>
+          <td th:text="${mascotas.genero}"></td>
+          <td th:text="${mascotas.edad}"></td>
+          <td th:text="${mascotas.fecha_nacimiento}"></td>
+          <td th:text="${mascotas.desparasitado}"></td>
+          <td th:text="${mascotas.persona_idPersona.nombre}"></td>
+          <td><a class="btn btn-primary"
+                 th:href="@{'/mascotas/edit?id=' + ${mascotas.idMascotas}}">Editar</a>
+          </td>
+          <td><a class="btn btn-danger"
+                 th:href="@{'/mascotas/delete?id=' + ${mascotas.idMascotas}}">Borrar</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <br>
+    </div>
+    <a class="btn btn-primary" th:href="@{'/mascotas/new'}" style="text-align:center">Nuevo Viaje</a>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
